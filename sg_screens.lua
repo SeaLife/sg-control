@@ -20,24 +20,16 @@ SGConfig[4] = {Name="Stargate-Log", 		State=true}
 
 peripheral.addFunction("stargate", "clearConnection", function(p) local ok, err = pcall( p.disconnect ) end)
 peripheral.addFunction("stargate", "dial", function(p, address) SGControl.Error = "" p.connect(address) end)
-function SGControl.CheckStargates()
-	local SG = peripheral.find("stargate", true, true)
-	local sgList = SGControl.listStargates()
-	SGControl.SGListCheck = {}
-	for k, v in pairs( sgList ) do
-		SGControl.SGListCheck[k] = SG.isValidAddress( v )
-		--SGControl.SGListCheck[k] = false
-	end
-end
+
 function StargateScreen.Home()
-	local sg = peripheral.find("stargate", true, true)
+	local SG = peripheral.find("stargate", true, true)
 	local x, y = term.getSize()
 	
-	local SG_Fuel = sg.getFuelLevel()
-	local SG_State = sg.getState()
-	local SG_DHD = sg.isDHDConnected()
-	local SG_CON = sg.isConnected()
-	local SG_Chevr = sg.getLockedChevronCount()
+	local SG_Fuel = SG.getFuelLevel()
+	local SG_State = SG.getState()
+	local SG_DHD = SG.isDHDConnected()
+	local SG_CON = SG.isConnected()
+	local SG_Chevr = SG.getLockedChevronCount()
 
 	local function btostring( boolean ) if boolean == true then return "Yes" else return "No" end end
 
@@ -56,15 +48,16 @@ function StargateScreen.Home()
 	term.xyprint( 22, 12, 	btostring(SG_DHD) )
 	term.xyprint( 22, 14, 	SG_Chevr )
 
-	if sg.getDialledAddress() ~= "" then
+	if SG.getDialledAddress() ~= "" then
 		term.setTextColor( colors.red )
 		term.setCursorPos(1, y-1)
-		term.cprint("Active Wormhole [" .. sg.getDialledAddress() .. "]")
+		term.cprint("Active Wormhole [" .. SG.getDialledAddress() .. "]")
 	else
 		term.setTextColor( colors.gray )
 		term.setCursorPos(1, y-1)
 		term.cprint("Stargate Idle")
 	end
+	sleep(1)
 end
 function StargateScreen.List()
 	local SG = peripheral.find("stargate", true, true)
@@ -86,20 +79,6 @@ function StargateScreen.List()
 			SGControl.addTouch( 5, 5+7, 3+index, function() SG.clearConnection() sleep(2) local _, err = pcall(SG.dial, sgList[i]) if err then SGControl.Error = err end end)
 			if( index%2 == 0 ) then term.setTextColor( colors.gray ) else term.setTextColor(colors.lightGray) end
 			term.xyprint(5+7+3, 3+index, SGInfo )
-			local STATE = ""
-			if SGControl.SGListCheck[i] ~= nil then
-				if SGControl.SGListCheck[i] == true then
-					term.setTextColor( colors.green )
-					STATE = "Exists"
-				else
-					term.setTextColor( colors.red )
-					STATE = "Failed"
-				end
-			else
-				term.setTextColor( colors.red )
-				STATE = "Not Tested"
-			end
-			term.xyprint(5+7+3+20, 3+index, "> " .. STATE .. "" )
 			index = index + 1
 		end
 	end
@@ -111,9 +90,6 @@ function StargateScreen.List()
 	SGControl.addTouch( 5, 5+10, 3+index, function() SG.clearConnection() end)
 	term.setTextColor( colors.lime )
 	term.xyprint(5, 3+index, "Disconnect" )
-	SGControl.addTouch( 5+10+5, 5+10+5+16, 3+index, function() SGControl.CheckStargates() end)
-	term.setTextColor( colors.lime )
-	term.xyprint(5 + 10 + 5, 3+index, "[Test Stargates]" )
 
 	if SGControl.Error ~= "" then 
 		term.setTextColor( colors.red )
