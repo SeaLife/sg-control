@@ -1,0 +1,49 @@
+Buildfile: /home/sealife/op/OpenPeripheral/build.xml
+
+set-env:
+     [echo] Starting build for OpenPeripheralCore v0.3.0
+
+make-downloads-dir:
+
+download-forge:
+
+download-files:
+
+setup-forge:
+
+cleanup-build:
+   [delete] Deleting directory /home/sealife/op/OpenPeripheral/build/classes
+    [mkdir] Created dir: /home/sealife/op/OpenPeripheral/build/classes
+
+cleanup-mcp:
+
+pre-build:
+
+copy-source:
+     [copy] Copying 841 files to /home/sealife/op/OpenPeripheral/build/forge/mcp/src/minecraft
+
+recompile:
+     [exec] == MCP 8.09 (data: 8.11, client: 1.6.4, server: 1.6.4) ==
+     [exec] "scalac" is not found on the PATH.  Scala files will not be recompiled
+     [exec] # found wine, ff, ff patches, srgs, name csvs, doc csvs, param csvs, astyle, astyle config, rg, ss
+     [exec] !! Can not find client sources, try decompiling !!
+     [exec] !! Can not find server sources, try decompiling !!
+
+reobfuscate:
+     [exec] == MCP 8.09 (data: 8.11, client: 1.6.4, server: 1.6.4) ==
+     [exec] "scalac" is not found on the PATH.  Scala files will not be recompiled
+     [exec] # found wine, ff, ff patches, srgs, name csvs, doc csvs, param csvs, astyle, astyle config, rg, ss
+     [exec] > Creating Retroguard maping files
+     [exec] > Creating Retroguard config files
+     [exec] !! Can not find client md5s !!
+     [exec] !! Can not find server md5s !!
+
+run-mcp:
+
+copy-binaries:
+
+BUILD FAILED
+/home/sealife/op/OpenPeripheral/openmodslib/common.xml:117: /home/sealife/op/OpenPeripheral/build/forge/mcp/reobf/minecraft does not exist.
+
+Total time: 37 seconds
+sealife@vmd2091:~/op/OpenPeripheral$
