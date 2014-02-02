@@ -27,7 +27,7 @@ SGControl.Hooks = {}
 SGControl.Exit = false
 SGControl.Mods = {}
 SGControl.ExitError = ""
-StargateScreen.Mode = "home"
+StargateScreen.Mode = "list"
 StargateScreen.Modes = {}
 SGControl.User = {}
 
