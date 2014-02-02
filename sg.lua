@@ -17,7 +17,7 @@ SGControl.Args = { ... }
 
 SG_ADDRESS = ""
 
-SGControl.Version = "v1.4"
+SGControl.Version = "v1.5"
 SGControl.SystemIP = ""
 SGControl.DeviceIP = ""
 SGControl.Minimized = false
