@@ -153,7 +153,19 @@ if fs.exists("sg_mod.lua") then shell.run("sg_mod.lua") end
 
 
 if peripheral.find("stargate", true, true) == nil then error("No Stargate in NW") end
+-- Test if OpenPeripheral is fully Compatible with this Script:
 local SG = peripheral.find("stargate", true, true )
+
+if SG.getFuelLevel == nil 			then error("Function Failed: 1") end
+if SG.isValidAddress == nil 		then error("Function Failed: 2") end
+if SG.getHomeAddress == nil 		then error("Function Failed: 3") end
+if SG.disconnect == nil 			then error("Function Failed: 4") end
+if SG.connect == nil 				then error("Function Failed: 5") end
+if SG.isDHDConnected == nil 		then error("Function Failed: 6") end
+if SG.isConnected == nil 			then error("Function Failed: 7") end
+if SG.isInitiator == nil 			then error("Function Failed: 8") end
+if SG.getLockedChevronCount == nil 	then error("Function Failed: 9") end
+
 SGControl.SystemIP = term.getIP()
 SG_ADDRESS = SG.getHomeAddress()
 
