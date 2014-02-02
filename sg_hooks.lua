@@ -1,4 +1,4 @@
-if SGControl.Version ~= "v1.4" then error("SG-Control Failed!") end
+if SGControl.Version ~= "v1.5" then error("SG-Control Failed!") end
 -- Stargate Hooks
 function SGControl.Hook_Firewall()
 	while true do
