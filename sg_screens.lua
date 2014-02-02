@@ -172,7 +172,7 @@ function StargateScreen.AddStargate()
 	local Addr = read()
 	term.xyprint(3, 8, "Name:    " )
 	local Name = read()
-	if string.len(Addr) == 7 then
+	if string.len(Addr) == 7 and Addr ~= SG_ADDRESS then
 		SGControl.addStargate( string.upper(Addr), Name)
 		term.setCursorPos(1, y-1)
 		term.setTextColor( colors.green )
@@ -186,7 +186,7 @@ function StargateScreen.AddStargate()
 		end
 		term.setCursorPos(1, y-1)
 		term.setTextColor( colors.red )
-		term.cprint("Adding Failed! (Stargate Address to short!)")
+		term.cprint("Adding Failed! (Unexpected Error)")
 		sleep(2)
 	end
 end
