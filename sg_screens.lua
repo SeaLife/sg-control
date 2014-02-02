@@ -1,4 +1,4 @@
-if SGControl.Version ~= "v1.4" then error("SG-Control Failed!") end
+if SGControl.Version ~= "v1.5" then error("SG-Control Failed!") end
 -- Stargate Screens
 SGControl.Menu[1] = {name="Home", 		funct=function() StargateScreen.Mode = "home" end}
 SGControl.Menu[2] = {name="List", 		funct=function() StargateScreen.Mode = "list" end}
